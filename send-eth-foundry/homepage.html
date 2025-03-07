@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduStake - Learn, Commit, Earn</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <!-- Add jsPDF library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Home Section -->
+    <div class="landing-container" id="home-section">
+      <div class="content-wrapper">
+        <header class="header">
+          <div class="logo">
+            <span class="logo-edu">Edu</span>
+            <span class="logo-stake">Stake</span>
+          </div>
+          <nav class="navigation">
+            <a href="#" class="nav-link" onclick="showSection('home-section')"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="nav-link"
+              onclick="showSection('courses-grid-section')"
+              >Courses</a
+            >
+            <a href="#" class="nav-link" onclick="showSection('earn-section')"
+              >Earn</a
+            >
+          </nav>
+        </header>
+
+        <main class="main-content">
+          <h1 class="headline">Learn, Commit, Earn</h1>
+          <p class="description">
+            A blockchain-powered education platform where users stake funds to
+            commit to learning, unlock refunds upon completion, and earn
+            rewards.
+          </p>
+          <section class="cta-buttons">
+            <button
+              onclick="showSection('wallet-section')"
+              class="cta-button primary"
+            >
+              Get Started
+            </button>
+            <button
+              onclick="showSection('courses-section')"
+              class="cta-button secondary"
+            >
+              View Course
+            </button>
+            <!--<p id="status"></p>-->
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Course Section -->
+    <div class="course-container hidden" id="course-section">
+      <div class="course-content-wrapper">
+        <header class="course-header">
+          <div class="logo">
+            <span class="logo-edu">Edu</span>
+            <span class="logo-stake">Stake</span>
+          </div>
+          <nav class="navigation">
+            <a href="#" class="nav-link" onclick="showSection('home-section')"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="nav-link"
+              onclick="showSection('courses-grid-section')"
+              >Courses</a
+            >
+            <a href="#" class="nav-link" onclick="showSection('earn-section')"
+              >Earn</a
+            >
+          </nav>
+        </header>
+
+        <main class="course-main-content">
+          <div class="course-hero-content">
+            <div class="course-text-column">
+              <h1 class="course-title">
+                New to Web3? <br />
+                Your Journey Begins Here!
+              </h1>
+              <p class="course-description">
+                Enroll in beginner-friendly courses, stake to commit, complete
+                lessons, and earn rewards for mastering blockchain skills.
+              </p>
+              <button id="go-to-course-btn" class="go-to-course-btn">
+                Go to Course
+              </button>
+            </div>
+            <div class="course-image-column">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/8d7152898af742a6a1422ed52103f719/9746495f00a63166fce8b18c93262c190bd8af5bf3ac35675fd7b3b0a7e8ace7?placeholderIfAbsent=true"
+                alt="Web3 education illustration"
+                class="course-image"
+              />
+            </div>
+          </div>
+          <button onclick="showSection('home-section')" class="back-button">
+            Back to Home
+          </button>
+        </main>
+      </div>
+    </div>
+
+    <!-- Courses Grid Section -->
+    <div class="courses-grid-container hidden" id="courses-grid-section">
+      <div class="courses-content-wrapper">
+        <header class="courses-header">
+          <div class="logo">
+            <span class="logo-edu">Edu</span>
+            <span class="logo-stake">Stake</span>
+          </div>
+          <nav class="courses-navigation">
+            <a href="#" class="nav-link" onclick="showSection('home-section')"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="nav-link active"
+              onclick="showSection('courses-grid-section')"
+              >Courses</a
+            >
+            <a href="#" class="nav-link" onclick="showSection('earn-section')"
+              >Earn</a
+            >
+          </nav>
+        </header>
+
+        <main class="courses-main-content">
+          <section class="search-section">
+            <div class="search-bar">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/8d7152898af742a6a1422ed52103f719/a9f2145ee253bea1a5437e68eeb4e52de6387e5132c7ce1ca703fa47f11cc1bb?placeholderIfAbsent=true"
+                alt="Search icon"
+                class="search-icon"
+              />
+              <input type="text" placeholder="Search" class="search-input" />
+            </div>
+            <div class="filter-dropdown">
+              <span class="filter-text">All</span>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/8d7152898af742a6a1422ed52103f719/12dadb34cb2411d2d25398ba4881ebefdf50e58b25eb5ec57f005ae9dd973b99?placeholderIfAbsent=true"
+                alt="Dropdown icon"
+                class="dropdown-icon"
+              />
+            </div>
+          </section>
+
+          <section class="courses-grid">
+            <div class="courses-row">
+              <!-- Course Card 1 -->
+              <article class="course-card">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/8d7152898af742a6a1422ed52103f719/0d8cbb9ec9ee23db0905f43ec77f3e1aed8fff4981c29e4f3a138c7b43ca2969?placeholderIfAbsent=true"
+                  alt="Ethereum 101 course thumbnail"
+                  class="course-image"
+                />
+                <div class="course-header">
+                  <h2 class="course-title">Ethereum 101</h2>
+                  <span class="difficulty-badge beginner">Beginner</span>
+                </div>
+                <p class="course-description">
+                  Ethereum 101 is an introductory course designed for beginners
+                  to understand the fundamentals of Ethereum...
+                </p>
+                <a href="#" class="course-button">Go to course</a>
+              </article>
+
+              <!-- Course Card 2 -->
+              <article class="course-card">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/8d7152898af742a6a1422ed52103f719/7acd2ec8c39eb1418b37938d367e652f4971522748eb0eaa5658ae851e49d7af?placeholderIfAbsent=true"
+                  alt="Smart Contract Dev course thumbnail"
+                  class="course-image"
+                />
+                <div class="course-header">
+                  <h2 class="course-title">Smart Contract Dev</h2>
+                  <span class="difficulty-badge advanced">Advanced</span>
+                </div>
+                <p class="course-description">
+                  Learn how to write, test, and deploy smart contracts using
+                  Solidity and best practices...
+                </p>
+                <button
+                  onclick="showSection('smart-contract-course')"
+                  class="course-button"
+                >
+                  Go to course
+                </button>
+              </article>
+
+              <!-- Course Card 3 -->
+              <article class="course-card">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/8d7152898af742a6a1422ed52103f719/662d7ca6e6f33b4e709f4d7e52ee76f8ebc79f1a4e9452c155060c2c8fc7aa0c?placeholderIfAbsent=true"
+                  alt="Intro to Python course thumbnail"
+                  class="course-image"
+                />
+                <div class="course-header">
+                  <h2 class="course-title">Intro to Python</h2>
+                  <span class="difficulty-badge intermediate"
+                    >Intermediate</span
+                  >
+                </div>
+                <p class="course-description">
+                  This beginner-friendly course teaches Python programming and
+                  prepares you for blockchain development...
+                </p>
+                <a href="#" class="course-button">Go to course</a>
+              </article>
+            </div>
+          </section>
+
+          <button onclick="showSection('home-section')" class="back-button">
+            Back to Home
+          </button>
+        </main>
+      </div>
+    </div>
+    <!-- Smart Contract DevOps Course Section -->
+    <div class="course-container hidden" id="smart-contract-course">
+      <div class="content-wrapper">
+        <header class="course-header">
+          <div class="logo">
+            <span class="logo-edu">Edu</span>
+            <span class="logo-stake">Stake</span>
+          </div>
+          <nav class="navigation">
+            <a href="#" class="nav-link" onclick="showSection('home-section')"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="nav-link"
+              onclick="showSection('courses-grid-section')"
+              >Courses</a
+            >
+            <a href="#" class="nav-link" onclick="showSection('earn-section')"
+              >Earn</a
+            >
+          </nav>
+        </header>
+
+        <main class="course-main-content">
+          <div class="course-hero-content">
+            <div class="course-text-column">
+              <h1 class="course-title">Smart Contract DevOps</h1>
+              <p class="course-description">
+                Smart Contract Development is a hands-on course designed for
+                developers who want to learn how to write, test, and deploy
+                smart contracts on Ethereum. The course covers Solidity
+                programming, security best practices, deployment tools, and
+                DevOps workflows.
+              </p>
+              <div class="contract-stats">
+                <div class="stat-item">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/9552d9295652253623b070f055225a2ab32e775e"
+                    alt="Modules icon"
+                    class="stat-icon"
+                  />
+                  <span class="stat-text">20 modules</span>
+                </div>
+                <div class="stat-item">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/807e4ce652db0ba8ddf8a5eeae436ca4627acad6"
+                    alt="Duration icon"
+                    class="stat-icon"
+                  />
+                  <span class="stat-text">8hrs</span>
+                </div>
+                <div class="stat-item">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/4e3bbc5eb8658fbb1fc94fb6fada2abc0beca31a"
+                    alt="Projects icon"
+                    class="stat-icon"
+                  />
+                  <span class="stat-text">3 projects</span>
+                </div>
+              </div>
+              <button
+                class="start-course"
+                aria-label="Start Course"
+                id="startCourseBtn"
+              >
+                Start Course
+              </button>
+            </div>
+            <div class="right-content">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/f817f3a3c206db66e36a2b3161316dfdc88226ca"
+                alt="Smart Contract DevOps course illustration"
+                class="contract-image"
+              />
+            </div>
+          </div>
+        </main>
+
+        <!--Goal Setting Popup-->
+        <div
+          class="goal-popup"
+          id="goalPopup"
+          aria-labelledby="popupTitle"
+          aria-modal="true"
+          role="dialog"
+        >
+          <div class="popup-content">
+            <button
+              class="close-popup"
+              id="closePopup"
+              aria-label="Close popup"
+            >
+              &times;
+            </button>
+            <h2 id="popupTitle" class="popup-title">
+              Set Your Goal: When do you want to complete this course?
+            </h2>
+            <div class="goal-counter">
+              <button
+                class="counter-btn minus-btn"
+                id="decrementBtn"
+                aria-label="Decrease days"
+              >
+                -
+              </button>
+              <input
+                type="number"
+                class="counter-input"
+                id="counterInput"
+                value="0"
+                min="0"
+                aria-label="Number of days to complete course"
+              />
+              <button
+                class="counter-btn plus-btn"
+                id="incrementBtn"
+                aria-label="Increase days"
+              >
+                +
+              </button>
+            </div>
+            <div class="days-label">days</div>
+            <button class="confirm-btn" id="confirmBtn">Confirm</button>
+          </div>
+        </div>
+        <!-- Staking Popup -->
+        <div
+          class="goal-popup"
+          id="stakingPopup"
+          aria-labelledby="stakingTitle"
+          aria-modal="true"
+          role="dialog"
+        >
+          <div class="popup-content">
+            <button
+              class="close-popup"
+              id="closeStakingPopup"
+              aria-label="Close staking popup"
+            >
+              &times;
+            </button>
+            <h2 id="stakingTitle" class="popup-title">
+              Click below and stake 0.01 ETH
+            </h2>
+
+            <!-- Initial staking view -->
+            <div id="stakingView">
+              <!--<button onclick="sendETH()" disabled id="sendButton">Send 0.01 ETH</button>-->
+              <button onclick="sendETH()" class="stake-btn" id="stakeBtn">
+                Stake 0.01 ETH
+              </button>
+              <p id="status" class="transaction-status"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Smart Contract Module -->
+
+    <div class="course-container hidden" id="smart-contract-module">
+      <div class="app">
+        <header class="header">
+          <div class="logo">
+            <span class="logo-edu">Edu</span>
+            <span class="logo-stake">Stake</span>
+          </div>
+          <nav class="navigation">
+            <a href="#" class="nav-link" onclick="showSection('home-section')"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="nav-link"
+              onclick="showSection('courses-grid-section')"
+              >Courses</a
+            >
+            <a href="#" class="nav-link" onclick="showSection('earn-section')"
+              >Earn</a
+            >
+          </nav>
+        </header>
+
+        <main class="contract-container">
+          <div class="contract-header">
+            <h1 class="contract-title">Smart Contract DevOps</h1>
+            <div class="contract-progress">
+              <div class="learningprogress-bar">
+                <div class="learningprogress-fill" style="width: 0%"></div>
+              </div>
+              <span class="learningprogress-text">0% Complete</span>
+            </div>
+          </div>
+
+          <div class="course-content">
+            <aside class="sidebar">
+              <div class="course-info">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/f817f3a3c206db66e36a2b3161316dfdc88226ca"
+                  alt="Course thumbnail"
+                  class="course-thumbnail"
+                />
+                <div class="course-stats-small">
+                  <div class="stat-item-small">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/9552d9295652253623b070f055225a2ab32e775e"
+                      alt="Modules icon"
+                      class="stat-icon-small"
+                    />
+                    <span class="stat-text-small">20 modules</span>
+                  </div>
+                  <div class="stat-item-small">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/807e4ce652db0ba8ddf8a5eeae436ca4627acad6"
+                      alt="Duration icon"
+                      class="stat-icon-small"
+                    />
+                    <span class="stat-text-small">8hrs</span>
+                  </div>
+                  <div class="stat-item-small">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/4e3bbc5eb8658fbb1fc94fb6fada2abc0beca31a"
+                      alt="Projects icon"
+                      class="stat-icon-small"
+                    />
+                    <span class="stat-text-small">3 projects</span>
+                  </div>
+                </div>
+              </div>
+
+              <nav class="module-navigation" aria-label="Course modules">
+                <h2 class="modules-title">Course Modules</h2>
+                <ul class="module-list">
+                  <!-- Module 1: Introduction to Smart Contracts -->
+                  <li class="module-item current" data-module="1">
+                    <button class="module-button" aria-expanded="true">
+                      <span class="module-number">1</span>
+                      <span class="module-name"
+                        >Introduction to Smart Contracts</span
+                      >
+                      <span class="module-status">In Progress</span>
+                    </button>
+                    <ul class="lesson-list">
+                      <li class="lesson-item current" data-lesson="1.1">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >What are Smart Contracts?</span
+                          >
+                          <span class="lesson-duration">10 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="1.2">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name">Ethereum Basics</span>
+                          <span class="lesson-duration">15 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="1.3">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Setting Up Your Environment</span
+                          >
+                          <span class="lesson-duration">20 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="1.4">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name">Module 1 Assessment</span>
+                          <span class="lesson-duration">15 min</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- Module 2: Solidity Programming -->
+                  <li class="module-item locked" data-module="2">
+                    <button class="module-button" aria-expanded="false">
+                      <span class="module-number">2</span>
+                      <span class="module-name">Solidity Programming</span>
+                      <span class="module-status">Locked</span>
+                    </button>
+                    <ul class="lesson-list">
+                      <li class="lesson-item" data-lesson="2.1">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Solidity Syntax Fundamentals</span
+                          >
+                          <span class="lesson-duration">20 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="2.2">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Data Types and Variables</span
+                          >
+                          <span class="lesson-duration">25 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="2.3">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Functions and Modifiers</span
+                          >
+                          <span class="lesson-duration">30 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="2.4">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Events and Error Handling</span
+                          >
+                          <span class="lesson-duration">20 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="2.5">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name">Module 2 Assessment</span>
+                          <span class="lesson-duration">20 min</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- Module 3: Testing Smart Contracts -->
+                  <li class="module-item locked" data-module="3">
+                    <button class="module-button" aria-expanded="false">
+                      <span class="module-number">3</span>
+                      <span class="module-name">Testing Smart Contracts</span>
+                      <span class="module-status">Locked</span>
+                    </button>
+                    <ul class="lesson-list">
+                      <li class="lesson-item" data-lesson="3.1">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Testing Frameworks Overview</span
+                          >
+                          <span class="lesson-duration">15 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="3.2">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Unit Testing with Truffle</span
+                          >
+                          <span class="lesson-duration">25 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="3.3">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name">Integration Testing</span>
+                          <span class="lesson-duration">20 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="3.4">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Test Coverage and Reporting</span
+                          >
+                          <span class="lesson-duration">15 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="3.5">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name">Module 3 Assessment</span>
+                          <span class="lesson-duration">20 min</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- Module 4: Deployment Strategies -->
+                  <li class="module-item locked" data-module="4">
+                    <button class="module-button" aria-expanded="false">
+                      <span class="module-number">4</span>
+                      <span class="module-name">Deployment Strategies</span>
+                      <span class="module-status">Locked</span>
+                    </button>
+                    <ul class="lesson-list">
+                      <li class="lesson-item" data-lesson="4.1">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Deployment Environments</span
+                          >
+                          <span class="lesson-duration">15 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="4.2">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Gas Optimization Techniques</span
+                          >
+                          <span class="lesson-duration">25 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="4.3">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name">Contract Upgrades</span>
+                          <span class="lesson-duration">30 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="4.4">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Continuous Integration</span
+                          >
+                          <span class="lesson-duration">20 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="4.5">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name">Module 4 Assessment</span>
+                          <span class="lesson-duration">20 min</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- Module 5: Security Best Practices -->
+                  <li class="module-item locked" data-module="5">
+                    <button class="module-button" aria-expanded="false">
+                      <span class="module-number">5</span>
+                      <span class="module-name">Security Best Practices</span>
+                      <span class="module-status">Locked</span>
+                    </button>
+                    <ul class="lesson-list">
+                      <li class="lesson-item" data-lesson="5.1">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Common Vulnerabilities</span
+                          >
+                          <span class="lesson-duration">25 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="5.2">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Security Auditing Tools</span
+                          >
+                          <span class="lesson-duration">20 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="5.3">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Secure Coding Patterns</span
+                          >
+                          <span class="lesson-duration">30 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="5.4">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name">Incident Response</span>
+                          <span class="lesson-duration">15 min</span>
+                        </a>
+                      </li>
+                      <li class="lesson-item" data-lesson="5.5">
+                        <a href="#" class="lesson-link">
+                          <span class="lesson-name"
+                            >Final Course Assessment</span
+                          >
+                          <span class="lesson-duration">30 min</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </aside>
+
+            <section class="lesson-content">
+              <div class="lesson-header">
+                <h2 class="lesson-title">What are Smart Contracts?</h2>
+                <div class="lesson-actions">
+                  <button
+                    class="action-button"
+                    aria-label="Mark as complete"
+                    id="markCompleteBtn"
+                  >
+                    Mark Complete
+                  </button>
+                  <button
+                    class="action-button dev-button"
+                    aria-label="Developer purpose"
+                    id="devPurposeBtn"
+                    style="display: none"
+                  >
+                    Dev Purpose
+                  </button>
+                  <button
+                    class="action-button next-button"
+                    aria-label="Next lesson"
+                    id="nextLessonBtn"
+                    disabled
+                  >
+                    Next Lesson
+                  </button>
+                </div>
+              </div>
+
+              <div class="lesson-body">
+                <p class="lesson-text">
+                  Smart contracts are self-executing contracts with the terms of
+                  the agreement directly written into code. They run on
+                  blockchain networks, primarily Ethereum, and automatically
+                  execute when predetermined conditions are met.
+                </p>
+
+                <h3 class="section-title">Key Characteristics</h3>
+                <ul class="lesson-list-items">
+                  <li>Immutable: Once deployed, they cannot be changed</li>
+                  <li>
+                    Transparent: All transactions are visible on the blockchain
+                  </li>
+                  <li>Trustless: No need for intermediaries</li>
+                  <li>
+                    Deterministic: Same input always produces the same output
+                  </li>
+                </ul>
+
+                <h3 class="section-title">Use Cases</h3>
+                <p class="lesson-text">
+                  Smart contracts are used in various applications including:
+                </p>
+                <ul class="lesson-list-items">
+                  <li>Decentralized Finance (DeFi)</li>
+                  <li>Supply Chain Management</li>
+                  <li>Digital Identity Verification</li>
+                  <li>Voting Systems</li>
+                  <li>Tokenization of Assets</li>
+                </ul>
+
+                <div class="lesson-video">
+                  <div class="video-placeholder">
+                    <div class="play-button">
+                      <i class="ti ti-player-play"></i>
+                    </div>
+                    <span class="video-text"
+                      >Introduction to Smart Contracts Video</span
+                    >
+                  </div>
+                </div>
+
+                <div class="lesson-quiz">
+                  <h3 class="quiz-title">Quick Check</h3>
+                  <div class="quiz-question">
+                    <p class="question-text">
+                      What is the primary blockchain platform for smart
+                      contracts?
+                    </p>
+                    <div class="quiz-options">
+                      <label class="quiz-option">
+                        <input type="radio" name="question1" value="bitcoin" />
+                        <span class="option-text">Bitcoin</span>
+                      </label>
+                      <label class="quiz-option">
+                        <input type="radio" name="question1" value="ethereum" />
+                        <span class="option-text">Ethereum</span>
+                      </label>
+                      <label class="quiz-option">
+                        <input type="radio" name="question1" value="ripple" />
+                        <span class="option-text">Ripple</span>
+                      </label>
+                    </div>
+                  </div>
+                  <button class="quiz-submit">Check Answer</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+
+        <footer class="course-footer">
+          <div class="footer-content">
+            <p class="copyright">© 2023 EduStake. All rights reserved.</p>
+            <div class="footer-links">
+              <a href="#" class="footer-link">Terms of Service</a>
+              <a href="#" class="footer-link">Privacy Policy</a>
+              <a href="#" class="footer-link">Help Center</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <!-- Congratulations Overlay -->
+      <div id="congratulationsOverlay" class="congratulations-overlay hidden">
+        <div class="congratulations-modal">
+          <button class="close-overlay" aria-label="Close">×</button>
+          <i class="ti ti-trophy congratulations-icon"></i>
+          <h3 class="congratulations-title">Congratulations!</h3>
+          <p class="congratulations-message">
+            You've successfully completed the Functions and Modifiers module!
+            Your commitment to learning has paid off, and you're now eligible to
+            claim your staked funds.
+          </p>
+          <button
+            onclick="withdrawETHToUser()"
+            class="claim-stake-button"
+            id="claim-stake-button"
+          >
+            Claim Your Stake
+          </button>
+          <p id="status"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Wallet Section -->
+    <div class="wallet-container hidden" id="wallet-section">
+      <div class="wallet-content-wrapper" style="display: block">
+        <header class="header">
+          <div class="logo">
+            <span class="logo-edu">Edu</span>
+            <span class="logo-stake">Stake</span>
+          </div>
+          <nav class="navigation">
+            <a href="#" class="nav-link" onclick="showSection('home-section')"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="nav-link"
+              onclick="showSection('courses-grid-section')"
+              >Courses</a
+            >
+            <a href="#" class="nav-link" onclick="showSection('earn-section')"
+              >Earn</a
+            >
+          </nav>
+        </header>
+
+        <main class="wallet-main-content">
+          <h1 class="wallet-headline">Connect your wallet & get started</h1>
+          <button onclick="connectWallet()" class="connect-wallet-btn">
+            Connect Wallet
+          </button>
+          <button onclick="showSection('home-section')" class="back-button">
+            Back to Home
+          </button>
+          <p id="status"></p>
+        </main>
+      </div>
+    </div>
+
+    <!-- Earn Section -->
+    <div class="earn-container hidden" id="earn-section">
+      <div class="container">
+        <header class="site-header">
+          <div class="brand-logo">
+            <span class="brand-name-highlight">Edu</span
+            ><span class="brand-name">Stake</span>
+          </div>
+          <nav class="main-nav">
+            <ul class="nav-list">
+              <li>
+                <a
+                  href="#"
+                  class="nav-link"
+                  onclick="showSection('home-section')"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="nav-link"
+                  onclick="showSection('courses-grid-section')"
+                  >Courses</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="nav-link active"
+                  onclick="showSection('earn-section')"
+                  >Earn</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <main class="main-content">
+          <h1 class="hero-heading">Learn while you earn</h1>
+
+          <section
+            class="rewards-timeline"
+            aria-label="Course progress timeline"
+          >
+            <!-- Continuous timeline line -->
+            <div class="continuous-timeline-line">
+              <div class="progress-bar" id="main-progress-bar"></div>
+            </div>
+
+            <div
+              class="timeline-item"
+              data-level="1"
+              tabindex="0"
+              role="button"
+              aria-pressed="true"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/1699682ff069bf635de4971eadfb8bc7936e9ef0"
+                alt="ETH icon"
+                class="eth-icon"
+                data-eth="0.01"
+                role="button"
+                aria-label="Claim 0.01 ETH"
+                tabindex="0"
+              />
+              <p class="eth-amount">0.01 ETH</p>
+              <div class="timeline-dot active"></div>
+              <p class="course-count">1 Course</p>
+            </div>
+
+            <div
+              class="timeline-item"
+              data-level="2"
+              tabindex="0"
+              role="button"
+              aria-pressed="false"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/1699682ff069bf635de4971eadfb8bc7936e9ef0"
+                alt="ETH icon"
+                class="eth-icon"
+                data-eth="0.02"
+              />
+              <p class="eth-amount">0.02 ETH</p>
+              <div class="timeline-dot"></div>
+              <p class="course-count">3 Courses</p>
+            </div>
+
+            <div
+              class="timeline-item"
+              data-level="3"
+              tabindex="0"
+              role="button"
+              aria-pressed="false"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/1699682ff069bf635de4971eadfb8bc7936e9ef0"
+                alt="ETH icon"
+                class="eth-icon"
+                data-eth="0.03"
+              />
+              <p class="eth-amount">0.03 ETH</p>
+              <div class="timeline-dot"></div>
+              <p class="course-count">6 Courses</p>
+            </div>
+
+            <div
+              class="timeline-item"
+              data-level="4"
+              tabindex="0"
+              role="button"
+              aria-pressed="false"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/1699682ff069bf635de4971eadfb8bc7936e9ef0"
+                alt="ETH icon"
+                class="eth-icon"
+                data-eth="0.04"
+              />
+              <p class="eth-amount">0.04 ETH</p>
+              <div class="timeline-dot"></div>
+              <p class="course-count">9 Courses</p>
+            </div>
+          </section>
+
+          <section
+            id="certificates"
+            class="certificates-section"
+            aria-label="Your certificates"
+          >
+            <h2 class="certificates-heading">Your Certificates</h2>
+            <div class="certificates-grid" id="certificatesGrid">
+            <!-- Certificates will be dynamically added here -->
+            </div>
+          </section>
+        </main>
+
+        <!-- Loading indicator -->
+        <div class="loading-indicator" id="loadingIndicator">
+          <div class="loading-spinner"></div>
+        </div>
+
+        <!-- Hidden container for PDF generation -->
+        <div class="pdf-certificate" id="pdfCertificate">
+          <div class="pdf-certificate-content" id="pdfContent">
+            <div class="pdf-header">
+              <div class="pdf-logo"><span>Edu</span>Stake</div>
+              <div class="pdf-title">Certificate of Completion</div>
+            </div>
+          <div class="pdf-body">
+            <p class="pdf-text">This certifies that</p>
+            <p class="pdf-name">Student Name</p>
+            <p class="pdf-text">has successfully completed the course</p>
+            <p class="pdf-certificate-title" id="pdfCourseName">Course Name</p>
+            <p class="pdf-text">
+              demonstrating proficiency in all required skills and knowledge.
+            </p>
+          </div>
+          <div class="pdf-footer">
+            <div class="pdf-date" id="pdfDate">Issued: 01-01-2023</div>
+            <div class="pdf-id" id="pdfId">CERT-123456</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="walletconnection.js"></script>
+  </body>
+</html>
